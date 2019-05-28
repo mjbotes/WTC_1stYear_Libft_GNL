@@ -6,7 +6,7 @@
 /*   By: mbotes <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 14:01:16 by mbotes            #+#    #+#             */
-/*   Updated: 2019/05/24 14:58:16 by mbotes           ###   ########.fr       */
+/*   Updated: 2019/05/27 09:55:58 by mbotes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@
 # include <sys/stat.h>
 # include <stdlib.h>
 
-int    get_next_line(const int fd, char **line);
+int	get_next_line(const int fd, char **line);
 
 #endif
