@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbotes <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/22 14:01:16 by mbotes            #+#    #+#             */
-/*   Updated: 2019/05/29 07:06:21 by mbotes           ###   ########.fr       */
+/*   Created: 2019/05/29 10:32:08 by mbotes            #+#    #+#             */
+/*   Updated: 2019/05/29 11:21:25 by mbotes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 100
-# define FD_MAX 255
-# include "libft/libft.h"
-# include <fcntl.h>
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <stdlib.h>
+#include "get_next_line.h"
+#include <stdlib.h>
 
-int	get_next_line(const int fd, char **line);
+int	main()
+{
+	int fd;
+	int fd2;
+	char *line;
+	char *line2;
 
-#endif
+	fd = open("test.txt", O_RDONLY);
+	fd2 = open("test2.txt", O_RDONLY);
+	while (get_next_line(fd,&line) > 0 && get_next_line(fd2,&line2) > 0)
+	{
+		ft_putendl(line);
+		ft_putendl(line2);
+		ft_strdel(&line);
+		ft_strdel(&line2);
+	}
+	sleep(120);
+	close(fd);
+	close(fd2);
+	return (0);
+}

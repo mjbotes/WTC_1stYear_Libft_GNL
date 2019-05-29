@@ -6,7 +6,7 @@
 /*   By: mbotes <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 12:32:57 by mbotes            #+#    #+#             */
-/*   Updated: 2019/05/27 09:55:19 by mbotes           ###   ########.fr       */
+/*   Updated: 2019/05/29 10:30:26 by mbotes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_reader(char **fd_arr, int fd)
 int		get_next_line(const int fd, char **line)
 {
 	char			buff[BUFF_SIZE + 1];
-	static char		*fd_arr[FD_MAX];
+	static char		*fd_arr[255];
 	char			*ptr;
 	char			*tmp;
 
@@ -64,13 +64,15 @@ int		get_next_line(const int fd, char **line)
 	{
 		tmp = ft_strdup(ptr + 1);
 		*line = ft_strdupdel(&fd_arr[fd]);
+		ft_strdel(&fd_arr[fd]);
 		if (tmp != NULL)
 			fd_arr[fd] = ft_strdupdel(&tmp);
+		return (1);
 	}
 	else
 	{
-		*line = ft_strdupdel(&fd_arr[fd]);
+		if (ft_strlen(fd_arr[fd]) != 0)
+			*line = ft_strdupdel(&fd_arr[fd]);
 		return (0);
 	}
-	return (1);
 }
