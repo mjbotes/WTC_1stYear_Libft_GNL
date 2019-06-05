@@ -6,30 +6,11 @@
 /*   By: mbotes <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 12:32:57 by mbotes            #+#    #+#             */
-/*   Updated: 2019/05/29 10:30:26 by mbotes           ###   ########.fr       */
+/*   Updated: 2019/06/05 16:21:45 by mbotes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-char	*ft_replacechr(char **str, char f, char r)
-{
-	char	*ptr;
-
-	if ((ptr = ft_strchr(*str, f)) == NULL)
-		return (NULL);
-	*ptr = r;
-	return (ptr);
-}
-
-char	*ft_strdupdel(char **str)
-{
-	char	*tmp;
-
-	tmp = ft_strdup(*str);
-	ft_strdel(str);
-	return (tmp);
-}
 
 void	ft_reader(char **fd_arr, int fd)
 {
@@ -69,10 +50,9 @@ int		get_next_line(const int fd, char **line)
 			fd_arr[fd] = ft_strdupdel(&tmp);
 		return (1);
 	}
-	else
-	{
-		if (ft_strlen(fd_arr[fd]) != 0)
-			*line = ft_strdupdel(&fd_arr[fd]);
+	if (ft_strlen(fd_arr[fd]) == 0)
 		return (0);
-	}
+	if (ft_strlen(fd_arr[fd]) != 0)
+		*line = ft_strdupdel(&fd_arr[fd]);
+	return (1);
 }
